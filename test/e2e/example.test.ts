@@ -6,6 +6,6 @@ describe('example e2e test', async () => {
 
   it('renders the index page', async () => {
     const html = await $fetch('/')
-    expect(html).toContain('Nuxt')
+    expect(html).toContain('ChampaShop')
   })
 })
