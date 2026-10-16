@@ -28,6 +28,15 @@ const item = computed(() => product.value!)
 const discount = computed(() => Math.round(item.value.discountPercentage))
 const isOutOfStock = computed(() => item.value.stock <= 0)
 
+// Ajout au panier (F3) : le store refuse de dépasser le stock et explique pourquoi
+const cart = useCartStore()
+const cartMessage = ref<string | null>(null)
+
+function onAddToCart(): void {
+  const stockMessage = cart.add(item.value.id, item.value.stock)
+  cartMessage.value = stockMessage ?? 'Produit ajouté au panier.'
+}
+
 useSeoMeta({
   title: () => item.value.title,
   description: () => item.value.description,
@@ -66,10 +75,14 @@ useSeoMeta({
 
         <ProductStock :stock="item.stock" />
 
-        <!-- Le panier (F3) branchera l'ajout ici -->
-        <button type="button" class="btn add-to-cart" :disabled="isOutOfStock">
+        <button type="button" class="btn add-to-cart" :disabled="isOutOfStock" @click="onAddToCart">
           {{ isOutOfStock ? 'Indisponible' : 'Ajouter au panier' }}
         </button>
+        <p class="cart-feedback" role="status">
+          <template v-if="cartMessage">
+            {{ cartMessage }} <NuxtLink to="/panier">Voir le panier</NuxtLink>
+          </template>
+        </p>
 
         <p class="description">{{ item.description }}</p>
 
@@ -169,6 +182,12 @@ useSeoMeta({
 
 .add-to-cart {
   min-width: 14rem;
+}
+
+.cart-feedback {
+  min-height: 1.5rem;
+  margin: 0;
+  font-weight: 600;
 }
 
 .details {
