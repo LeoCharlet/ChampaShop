@@ -22,6 +22,7 @@ const cart = useCartStore()
             </li>
           </ul>
         </nav>
+        <AuthMenu />
       </div>
     </header>
     <main id="contenu" class="container main" tabindex="-1">
