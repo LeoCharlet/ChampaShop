@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const cart = useCartStore()
+</script>
+
 <template>
   <div class="layout">
     <a href="#contenu" class="skip-link">Aller au contenu</a>
@@ -7,6 +11,15 @@
         <nav aria-label="Navigation principale">
           <ul class="nav">
             <li><NuxtLink to="/produits">Catalogue</NuxtLink></li>
+            <li>
+              <NuxtLink to="/panier" class="cart-link">
+                Panier
+                <span class="cart-count" aria-hidden="true">{{ cart.count }}</span>
+                <span class="sr-only"
+                  >({{ cart.count }} article{{ cart.count > 1 ? 's' : '' }})</span
+                >
+              </NuxtLink>
+            </li>
           </ul>
         </nav>
       </div>
@@ -49,9 +62,12 @@
 
 .header-inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem 1.5rem;
   min-height: 4rem;
+  padding-block: 0.75rem;
 }
 
 .logo {
@@ -76,6 +92,22 @@
 .nav a.router-link-active {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cart-count {
+  min-width: 1.5rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 .main {

@@ -6,3 +6,5 @@
 | 24/09 | Claude | Workflow GitHub Actions `ci.yml`                                                      | _À compléter_                                     |
 | 01/10 | Claude | Choix Vercel / Netlify et configuration `netlify.toml`                                | _À compléter_                                     |
 | 01/10 | Claude | Fonctionnalité F1 Catalogue (URL source de vérité, debounce, filtre prix, tests)      | _À compléter_                                     |
+| 07/10 | Claude | Moteur de promotions F4 (`computeCart`, 8 scénarios + cas limites)                    | _À compléter_                                     |
+| 07/10 | Claude | Panier F3 (store Pinia, cookie, page `/panier`, limite de stock)                      | _À compléter_                                     |
